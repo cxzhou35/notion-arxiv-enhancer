@@ -40,9 +40,9 @@ def read_database(client, database_id, title_property='title', url_property='url
     value_ls = {}
     for result in results:
         page_id = result['id']
-        paper_title = result['properties'][title_property]['title'][0]['plain_text']
         paper_pdf_url = result['properties'][url_property]['url']
         if paper_pdf_url is not None:
+            paper_title = result['properties'][title_property]['title'][0]['plain_text']
             value_ls.update({paper_title: [page_id, paper_pdf_url]})
 
     return value_ls

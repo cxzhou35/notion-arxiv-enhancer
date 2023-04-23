@@ -1,5 +1,5 @@
-NOTION_TOKEN: "secret_WXww4ihajMAy6LjHxRTUyDAWl4rZzMMnytBy6MeMOPq"
-DATABASE_ID: "a395c4959c744abf8df317438a6fac93"
+NOTION_TOKEN: "secret_xxx"
+DATABASE_ID: "xxx"
 PROPERTY:
   title: "论文Title"
   url: "论文链接"

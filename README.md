@@ -1,6 +1,6 @@
 # Notion arXiv Enhancer
 
-This project is my attempt at automating work in Notion. There may be some bugs, but if it's helpful to you, please give me a star.
+This project is my attempt at automating work in Notion. There may be some bugs, but if it's helpful to you, please give me a star. ⭐️
 
 ## Table of contents
 
@@ -11,6 +11,7 @@ This project is my attempt at automating work in Notion. There may be some bugs,
   - [Features](#features)
   - [Install & Use](#install-use)
   - [Demo](#demo)
+  - [Acknowledgment](#acknowledgment)
   - [FAQ](#faq)
 <!--toc:end-->
 
@@ -57,6 +58,16 @@ PROPERTY:
   ```
 
 ## Demo
+
+![demo](./asserts/demo.gif)
+
+## Acknowledgment
+
+💗 Thanks for those great works:
+
+- [arxiv](https://github.com/lukasschwab/arxiv.py)
+- [notion-py](https://github.com/jamalex/notion-py)
+- [notion-sdk-py](https://github.com/ramnes/notion-sdk-py)
 
 ## FAQ
 

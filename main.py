@@ -6,18 +6,27 @@ import os
 import yaml
 import arxiv
 import json
+import argparse
 from notion_client import Client
 
 
-def read_yaml(file_path):
+def read_yaml(file_path, args):
     """Reads the 'config.yaml' file and returns the `notion_token` and `database_id`."""
     with open(file_path, 'r') as f:
         print("Reading the config file...")
+        ret = {}
         config_dict = yaml.load(f, Loader=yaml.FullLoader)
         notion_token = config_dict['NOTION_TOKEN']
         database_id = config_dict['DATABASE_ID']
         page_info = config_dict['PROPERTY']
-        return notion_token, database_id, page_info
+        ret = {'notion_token': notion_token,
+               'database_id': database_id, 'page_info': page_info}
+
+        if args.auto_fetch:
+            arxiv_info = config_dict['ARXIV']
+            ret.update({'arxiv_info': arxiv_info})
+
+        return ret
 
 
 def init_notion(notion_token):
@@ -82,6 +91,30 @@ def get_paper_infos(pdf_urls):
     return paper_infos
 
 
+def auto_fetch_paper(arxiv_info, save_path):
+    print("Getting the paper information from arXiv...")
+    query, max_results = arxiv_info['query'], arxiv_info['max_results']
+    search = arxiv.Search(query=query,
+                          sort_by=arxiv.SortCriterion.SubmittedDate, max_results=max_results)
+
+    # Extract the paper titles and PDF URLs
+    papers = []
+    for id, result in enumerate(search.results()):
+        paper = {
+            "id": id+1,
+            "title": result.title,
+            "pdf_url": result.pdf_url,
+            "published_date": result.published.strftime("%Y-%m-%d")
+        }
+        papers.append(paper)
+
+    # Save the papers to a JSON file
+    with open(save_path, "w") as f:
+        json.dump(papers, f, indent=2)
+
+    print("Paper information saved to 'papers.json'.")
+
+
 def get_paper_authors(paper_infos):
     """Gets the paper authors and returns the paper authors."""
     paper_authors = {}
@@ -126,26 +159,37 @@ def write_database(database_id, client, paper_authors, title_property="title", a
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--auto_fetch", action='store_true',
+                        help='Automatically fetches the papers from arXiv.')
+    args = parser.parse_args()
     # Get the path of the current file
     pwd = os.path.dirname(os.path.abspath(__file__))
     yaml_path = os.path.join(pwd, 'config.yaml')
 
     # Read the config file
-    notion_token, database_id, page_info = read_yaml(yaml_path)
+    meta = read_yaml(yaml_path, args)
+    notion_token, database_id, page_info = meta['notion_token'], meta['database_id'], meta['page_info']
     title_property, url_property, author_property = page_info[
         'title'], page_info['url'], page_info['author']
 
-    # Initialize the notion client
-    client = init_notion(notion_token)
+    if args.auto_fetch:
+        arxiv_info = meta['arxiv_info']
+        auto_fetch_paper(arxiv_info, "papers.json")
 
-    # Get the paper information from arxiv
-    pdf_urls = read_database(client, database_id, title_property, url_property)
-    paper_infos = get_paper_infos(pdf_urls)
-    paper_authors = get_paper_authors(paper_infos)
+    else:
+        # Initialize the notion client
+        client = init_notion(notion_token)
 
-    # Write the paper information to the database
-    write_database(database_id, client, paper_authors,
-                   title_property, author_property)
+        # Get the paper information from arxiv
+        pdf_urls = read_database(
+            client, database_id, title_property, url_property)
+        paper_infos = get_paper_infos(pdf_urls)
+        paper_authors = get_paper_authors(paper_infos)
+
+        # Write the paper information to the database
+        write_database(database_id, client, paper_authors,
+                       title_property, author_property)
 
 
 if __name__ == '__main__':

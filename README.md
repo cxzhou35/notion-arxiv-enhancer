@@ -23,6 +23,7 @@ The purpose of this project is to automate the acquisition of related informatio
 
 - The input format is concise, efficient, and fast.
 - Update the author information of each page automatically.
+- 💥 Add a new feature according to this [issue](https://github.com/Xuer04/notion-arxiv-enhancer/issues/1). Now we can automatically fetch updated arXiv paper links daily and cache them for download locally, just add a parameter `auto_fetch` when running the script. The arXiv search options can be found in [config.yaml](./config.yaml).
 
 ## Install & Use
 
@@ -55,6 +56,12 @@ PROPERTY:
     title: "论文Title"
     url: "论文链接"
     author: "论文作者"
+  ```
+
+7. If you want to automatically fetch the arXiv paper, just run the command below:
+
+  ```sh
+  python main.py --auto_fetch
   ```
 
 ## Demo

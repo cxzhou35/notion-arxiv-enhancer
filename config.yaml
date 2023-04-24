@@ -1,6 +1,10 @@
-NOTION_TOKEN: "secret_xxx"
+NOTION_TOKEN: "xxx"
 DATABASE_ID: "xxx"
 PROPERTY:
   title: "论文Title"
   url: "论文链接"
   author: "论文作者"
+
+ARXIV:
+  query: "cs.CV"
+  max_results: 20

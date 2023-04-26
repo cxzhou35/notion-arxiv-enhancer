@@ -2,6 +2,8 @@
 
 This project is my attempt at automating work in Notion. There may be some bugs, but if it's helpful to you, please give me a star. ⭐️
 
+> If you meet any problems during use or would like to suggest new features to enhance this project, please feel free to [create an issue](https://github.com/Xuer04/notion-arxiv-enhancer/issues/new). 😁
+
 ## Table of contents
 
 <!--toc:start-->
@@ -72,7 +74,7 @@ PROPERTY: # change the property name according to your database.
 
 ## Acknowledgment
 
-💗 Thanks for those great works:
+💗 Thanks for these great works:
 
 - [arxiv](https://github.com/lukasschwab/arxiv.py)
 - [notion-py](https://github.com/jamalex/notion-py)

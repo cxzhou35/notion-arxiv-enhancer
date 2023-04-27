@@ -129,13 +129,6 @@ def write_database(database_id, client, paper_authors, title_property="title", a
     new_authors = []
     page_ids = []
     for title, value in paper_authors.items():
-        author_names = []
-        for author in value[1]:
-            author_names.append({
-                "text": {
-                    "content": author
-                }
-            })
         new_authors.append({
             title_property: {
                 "title": [
@@ -147,7 +140,7 @@ def write_database(database_id, client, paper_authors, title_property="title", a
                 ]
             },
             author_property: {
-                "multi_select": [{"name": author} for author in value[1]]
+                "multi_select": [{"name": author, "color": 'gray'} for author in value[1]]
             }
         })
         page_ids.append(value[0])

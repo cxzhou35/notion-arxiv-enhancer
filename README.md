@@ -2,7 +2,7 @@
 
 This project is my attempt at automating work in Notion. There may be some bugs, but if it's helpful to you, please give me a star. ⭐️
 
-> If you meet any problems during use or would like to suggest new features to enhance this project, please feel free to [create an issue](https://github.com/Xuer04/notion-arxiv-enhancer/issues/new). 😁
+> If you meet any problems during use or would like to suggest new features to enhance this project, please feel free to [create an issue](https://github.com/cxzhou35/notion-arxiv-enhancer/issues/new). 😁
 
 ## Table of contents
 
@@ -25,7 +25,7 @@ The purpose of this project is to automate the acquisition of related informatio
 
 - The input format is concise, efficient, and fast.
 - Update the author information of each page automatically.
-- 💥 Add a new feature according to this [issue](https://github.com/Xuer04/notion-arxiv-enhancer/issues/1). Now we can automatically fetch updated arXiv paper links daily and cache them for download locally, just add a parameter `auto_fetch` when running the script. The arXiv search options can be found in [config.yaml](./config.yaml).
+- 💥 Add a new feature according to this [issue](https://github.com/cxzhou35/notion-arxiv-enhancer/issues/1). Now we can automatically fetch updated arXiv paper links daily and cache them for download locally, just add a parameter `auto_fetch` when running the script. The arXiv search options can be found in [config.yaml](./config.yaml).
 
 ## Install & Use
 

@@ -36,14 +36,14 @@ The purpose of this project is to automate the acquisition of related informatio
   ```
 
 2. Create a new Notion integration in this [page](https://www.notion.com/my-integrations), once you have created your integration, you will be given an integration token. This token is used to authenticate your requests to the Notion API. You can also change the token *Capabilities* as you like.
-  ![screenshot1](./asserts/screenshot1.png)
+  ![screenshot1](./assets/screenshot1.png)
 
 3. Add the token saved in **Step 2.** to [config.yaml](./config.yaml), the token should be in the `NOTION_TOKEN` field, please do not remove the double quotes, as this is a string.
 
 4. Get the database id from Notion, you can get the id follow the instruction below:
-  ![screenshot2](./asserts/screenshot2.png)
+  ![screenshot2](./assets/screenshot2.png)
   Then copy the link to anywhere you like, the **string end up with '?v='** is the database id we need. Lastly, connect the database to the Notion integration created in **Step 1.**(This is very important, otherwise we cannot access the database.)
-  ![screenshot3](./asserts/screenshot3.png)
+  ![screenshot3](./assets/screenshot3.png)
 
 5. Add the database id copied in **Step 4.** to [config.yaml](./config.yaml), the database id should be in the `DATABASE_ID` field, please do not remove the double quotes, as this is a string.
 
@@ -70,7 +70,7 @@ PROPERTY: # change the property name according to your database.
 
 ## Demo
 
-![demo](./asserts/demo.gif)
+![demo](./assets/demo.gif)
 
 ## Acknowledgment
 
